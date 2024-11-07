@@ -18,6 +18,7 @@ reboot
 
 docker network create -d macvlan --subnet=198.19.201.0/24 --gateway=198.19.201.254 -o parent=eth0 macvlan-eth0
 cat << EOF > /etc/local.d/local.start
+#!/bin/bash -e
 ip link add macvlan-eth0 link eth0 type macvlan mode bridge
 ip link set macvlan-eth0 up
 ip addr add 198.19.201.253/24 dev macvlan-eth0
